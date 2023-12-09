@@ -4,7 +4,7 @@ This plugin provides a shortcode to embed products from a separate store on your
 Here is a screenshot of the products being displayed on the [frontend](http://cld.wthms.co/4TlMMw) and the settings in the [backend](http://cld.wthms.co/CeLShM).
 
 ## Installation
-1. Go to the [releases tab](https://github.com/WPprodigy/woocommerce-external-product-embed/releases) in this repo.
+1. Go to the [releases tab](https://github.com/nandhugp/woocommerce-external-product-embed/releases) in this repo.
 2. Find the "Latest release" and click to download `woocommerce-external-product-embed.zip`.
 3. Starting at the Plugins page in the WordPress Admin, select "Add New" and then "Upload Plugin".
 3. Upload and Activate the plugin.
@@ -14,6 +14,10 @@ Here is a screenshot of the products being displayed on the [frontend](http://cl
 ### A few notes about this plugin:
 * You must have an admin account for the website running WooCommerce, or access to WooCommerce API keys.
 * The external website must be using WooCommerce version 3.0 or later.
+
+## Reason for forking
+
+I intend to add more features to the [existing source code](https://github.com/WPprodigy/woocommerce-external-product-embed) 
 
 ## Usage
 
@@ -111,6 +115,10 @@ If you want to work on the master branch of this plugin and submit a PR, you'll 
 3. Run `composer install`.
 
 ## Changelog
+= 4.0 =
+* Bug Fixes
+* Feature- Add trackers
+
 = 3.0 =
 * New shortcode with many more options: [wcepe_products]
 * Exponential performance improvements.
@@ -133,3 +141,4 @@ If you want to work on the master branch of this plugin and submit a PR, you'll 
 
 ## Upgrade Notice
 3.0 is a major rewrite. The previous shortcodes will still work, but the template has changed. If you made customizations to the template, you will need to switch to using the new template file and folder structure.
+
