@@ -63,6 +63,13 @@ class WCEPE_Admin {
 			array( __CLASS__, 'store_url_text_field' ), 'wcepe_settings_group', 'wcepe_api_connect_section'
 		);
 
+			// Affiliate endpoint
+			add_settings_field(
+				'wcepe_store_url_end',
+				__( 'Add something at the end of the product URL (Useful for adding affiliate tracker)', 'woocommerce-external-product-embed' ),
+				array( __CLASS__, 'store_url_end' ), 'wcepe_settings_group', 'wcepe_api_connect_section'
+			);
+
 		// Consumer Key
 		add_settings_field(
 			'wcepe_consumer_key',
@@ -114,9 +121,43 @@ class WCEPE_Admin {
 	/**
 	 * Store Home URL
 	 */
-	public static function store_url_text_field() {
-		$options = get_option( 'wcepe_settings' ); ?>
-		<input type='text' class="regular-text wcepe_store_url" name='wcepe_settings[wcepe_store_url]' value='<?php echo $options['wcepe_store_url']; ?>'>
+
+	 public static function store_url_text_field() {
+		// Get the current options from the database
+		$options = get_option('wcepe_settings');
+	
+		// Check if $options is an array before accessing the index
+		if (is_array($options) && isset($options['wcepe_store_url'])) {
+			$value = esc_attr($options['wcepe_store_url']);
+		} else {
+			// Set a default value or handle the situation accordingly
+			$value = '';
+		}
+		?>
+		
+		<!-- Output the HTML input field for the store URL -->
+		<input type='text' class="regular-text wcepe_store_url" name='wcepe_settings[wcepe_store_url]' value='<?php echo $value; ?>'>
+		
+		<?php
+	}
+
+	//Function to add something at the end of the URL
+	public static function store_url_end() {
+		// Get the current options from the database
+		$options = get_option('wcepe_settings');
+	  
+		// Check if $options is an array before accessing the index
+		if (is_array($options) && isset($options['wcepe_store_url_end'])) {
+			$value = esc_attr($options['wcepe_store_url_end']);
+		} else {
+			// Set a default value or handle the situation accordingly
+			$value = '';
+		}
+		?>
+		
+		<!-- Output the HTML input field for the store URL -->
+		<input type='text' class="regular-text wcepe_store_url" name='wcepe_settings[wcepe_store_url_end]' value='<?php echo $value; ?>'>
+		
 		<?php
 	}
 
@@ -124,8 +165,21 @@ class WCEPE_Admin {
 	 * Consumer Key
 	 */
 	public static function consumer_key_text_field() {
-		$options = get_option( 'wcepe_settings' ); ?>
-		<input type='text' class="regular-text wcepe_consumer_key" name='wcepe_settings[wcepe_consumer_key]' value='<?php echo $options['wcepe_consumer_key']; ?>'>
+		// Get the current options from the database
+		$options = get_option('wcepe_settings');
+	
+		// Check if $options is an array and if the 'wcepe_consumer_key' index exists
+		if (is_array($options) && isset($options['wcepe_consumer_key'])) {
+			$value = esc_attr($options['wcepe_consumer_key']);
+		} else {
+			// Set a default value or handle the situation accordingly
+			$value = '';
+		}
+		?>
+		
+		<!-- Output the HTML input field for the consumer key -->
+		<input type='text' class="regular-text wcepe_consumer_key" name='wcepe_settings[wcepe_consumer_key]' value='<?php echo $value; ?>'>
+		
 		<?php
 	}
 
@@ -133,8 +187,21 @@ class WCEPE_Admin {
 	 * Consumer Secret
 	 */
 	public static function consumer_secret_text_field() {
-		$options = get_option( 'wcepe_settings' ); ?>
-		<input type='password' class="regular-text wcepe_consumer_secret" name='wcepe_settings[wcepe_consumer_secret]' value='<?php echo $options['wcepe_consumer_secret']; ?>'>
+		// Get the current options from the database
+		$options = get_option('wcepe_settings');
+	
+		// Check if $options is an array and if the 'wcepe_consumer_secret' index exists
+		if (is_array($options) && isset($options['wcepe_consumer_secret'])) {
+			$value = esc_attr($options['wcepe_consumer_secret']);
+		} else {
+			// Set a default value or handle the situation accordingly
+			$value = '';
+		}
+		?>
+		
+		<!-- Output the HTML input field for the consumer secret -->
+		<input type='password' class="regular-text wcepe_consumer_secret" name='wcepe_settings[wcepe_consumer_secret]' value='<?php echo $value; ?>'>
+		
 		<?php
 	}
 
@@ -151,11 +218,26 @@ class WCEPE_Admin {
 	 * Transient Set Time
 	 */
 	public static function transients_set_time() {
-		$options = get_option( 'wcepe_settings' ); ?>
-		<input type='text' class="regular-text wcepe_transients_set_time" name='wcepe_settings[wcepe_transient_time]' placeholder="86400" value='<?php echo $options['wcepe_transient_time']; ?>'>
-		<div><?php _e( 'This option defaults to 86400 seconds, equal to one day. Setting to 0 will disable transients from being created (not recommended).', 'woocommerce-external-product-embed' ) ?></div>
+		// Get the current options from the database
+		$options = get_option('wcepe_settings');
+	
+		// Check if $options is an array and if the 'wcepe_transient_time' index exists
+		if (is_array($options) && isset($options['wcepe_transient_time'])) {
+			$value = esc_attr($options['wcepe_transient_time']);
+		} else {
+			// Set a default value or handle the situation accordingly
+			$value = '';
+		}
+		?>
+		
+		<!-- Output the HTML input field for transients set time -->
+		<input type='text' class="regular-text wcepe_transients_set_time" name='wcepe_settings[wcepe_transient_time]' placeholder="86400" value='<?php echo $value; ?>'>
+		
+		<div><?php _e('This option defaults to 86400 seconds, equal to one day. Setting to 0 will disable transients from being created (not recommended).', 'woocommerce-external-product-embed') ?></div>
+		
 		<?php
 	}
+	
 
 	/**
 	 * Delete Product Transients

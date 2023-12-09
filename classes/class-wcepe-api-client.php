@@ -77,19 +77,36 @@ class WCEPE_API_Client {
 	 * Get the data we need from a product.
 	 */
 	public function get_product_data( $product ) {
+			// Get the current options from the database
+			$options = get_option('wcepe_settings');
+	  
+			// Check if $options is an array before accessing the index
+			if (is_array($options) && isset($options['wcepe_store_url_end'])) {
+				$link_end = esc_attr($options['wcepe_store_url_end']);
+			} else {
+				// Set a default value or handle the situation accordingly
+				$link_end= '';
+			}
+	
 		// List of values we need from the API for a single product.
 		$needed_data = apply_filters( 'wcepe_product_needed_data', array(
 			'title'   => 'name',
 			'image'   => array( 'src', 'name', 'alt' ),
 			'price'   => 'price_html',
-			'link'    => 'permalink',
+			'link'    => 'permalink' ,
 			'rating'  => 'average_rating',
 			'on_sale' => 'on_sale'
 		) );
+		
 
-		$product_data = array();
+		$product_data = array(); 
 		foreach ( $needed_data as $key => $value ) {
-			if ( 'image' === $key ) {
+
+			if('link'==$key){
+				$product_data[ $key ] = $product[ $value ].$link_end;
+
+			}
+			else if ( 'image' === $key ) {
 				// Images need some special handeling.
 				foreach ( $value as $attribute ) {
 					$product_data[ 'image' ][ $attribute ] = $product['images'][0][ $attribute ];
