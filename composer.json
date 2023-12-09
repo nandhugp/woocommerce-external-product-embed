@@ -1,7 +1,7 @@
 {
     "name": "nandhugp/woocommerce-external-product-embed",
     "description": "Provides a shortcode to embed products from another store.",
-    "homepage": "https://calebburks.com/plugins/",
+    "homepage": "https://github.com/nandhugp/woocommerce-external-product-embed",
     "type": "wordpress-plugin",
     "license": "GPL-3.0+",
     "require": {

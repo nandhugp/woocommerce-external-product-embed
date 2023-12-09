@@ -1,12 +1,11 @@
 <?php
 /**
  * Plugin Name: WooCommerce External Product Embed
- * Plugin URI: http://calebburks.com/plugins
+ * Plugin URI: https://github.com/nandhugp/woocommerce-external-product-embed
  * Description: Provides a shortcode to embed products from another store.
- * Version: 3.0.0
- * Author: Caleb Burks
- * Author URI: http://calebburks.com
- * Copyright: (c) 2017 Caleb Burks
+ * Version: 4.0.0
+ * Author: Caleb Burks and Nanda Kumar
+ * Copyright: (c) 2023 Caleb Burks and Nanda Kumar
  * License: GPL v3 or later
  * License URI: http://www.gnu.org/licenses/old-licenses/gpl-3.0.html
  * Text Domain: woocommerce-external-product-embed
@@ -25,7 +24,7 @@ class Woocommerce_External_Product_Embed {
 	/**
 	 * Plugin version, used for styles/scripts.
 	 */
-	public $version = '3.0.0';
+	public $version = '4.0.0';
 
 	/**
 	 * The single instance of the class.
